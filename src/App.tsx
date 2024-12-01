@@ -6,10 +6,10 @@ function App() {
   return (
     <>
       <NewPost />
-      <div className={styles.posts}>
+      <ul className={styles.posts}>
         <Post author="John Doe" content="This is a post" />
         <Post author="Jane Doe" content="This is another post" />
-      </div>
+      </ul>
     </>
   );
 }
