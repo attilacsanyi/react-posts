@@ -1,18 +1,23 @@
 import { useState } from "react";
-import Modal from "../Modal";
+import Modal from "../layout/Modal";
 import NewPost from "./NewPost";
 import Post from "./Post";
 import styles from "./PostList.module.css";
 
-const PostList = () => {
-  const [modalIsVisible, setModalIsVisible] = useState(true);
+const PostList = ({
+  isPosting,
+  onStopPosting,
+}: {
+  isPosting: boolean;
+  onStopPosting: () => void;
+}) => {
   const [enteredBody, setEnteredBody] = useState("Default Body");
   const [enteredAuthor, setEnteredAuthor] = useState("Default Author");
 
   return (
     <>
-      {modalIsVisible && (
-        <Modal onClose={() => setModalIsVisible(false)}>
+      {isPosting && (
+        <Modal onClose={onStopPosting}>
           <NewPost
             onChangeBody={(event) => setEnteredBody(event.target.value)}
             onChangeAuthor={(event) => setEnteredAuthor(event.target.value)}
