@@ -1,9 +1,9 @@
 import styles from "./Post.module.css";
 
-interface Props {
+type Props = {
   author: string;
   content: string;
-}
+};
 
 const Post = ({ author, content }: Props) => {
   return (
