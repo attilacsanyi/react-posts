@@ -1,6 +1,6 @@
 import classes from "./NewPost.module.css";
 
-function NewPost() {
+const NewPost = () => {
   return (
     <form className={classes.form}>
       <p>
@@ -13,6 +13,6 @@ function NewPost() {
       </p>
     </form>
   );
-}
+};
 
 export default NewPost;
