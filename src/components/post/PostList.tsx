@@ -11,24 +11,35 @@ const PostList = ({
   isPosting: boolean;
   onStopPosting: () => void;
 }) => {
-  const [enteredBody, setEnteredBody] = useState("Default Body");
-  const [enteredAuthor, setEnteredAuthor] = useState("Default Author");
+  const [posts, setPosts] = useState<{ body: string; author: string }[]>([]);
 
   return (
     <>
       {isPosting && (
         <Modal onClose={onStopPosting}>
           <NewPost
-            onChangeBody={(event) => setEnteredBody(event.target.value)}
-            onChangeAuthor={(event) => setEnteredAuthor(event.target.value)}
+            onCancel={onStopPosting}
+            onAddPost={(post) => setPosts((posts) => [post, ...posts])}
           />
         </Modal>
       )}
 
-      <ul className={styles.posts}>
-        <Post author={enteredAuthor} content={enteredBody} />
-        <Post author="Jane Doe" content="This is another post" />
-      </ul>
+      {/* If there are posts, render them */}
+      {posts.length > 0 && (
+        <ul className={styles.posts}>
+          {posts.map(({ author, body }) => (
+            <Post key={body} author={author} content={body} />
+          ))}
+        </ul>
+      )}
+
+      {/* If there are no posts, render a message */}
+      {posts.length === 0 && (
+        <div style={{ textAlign: "center", color: "white" }}>
+          <h2>There are no posts yet.</h2>
+          <p>Start adding some!</p>
+        </div>
+      )}
     </>
   );
 };
