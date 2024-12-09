@@ -1,29 +1,12 @@
-import { useState } from "react";
-import Modal from "../layout/Modal";
-import NewPost from "./NewPost";
+import { useLoaderData } from "react-router-dom";
 import Post from "./Post";
 import styles from "./PostList.module.css";
 
-const PostList = ({
-  isPosting,
-  onStopPosting,
-}: {
-  isPosting: boolean;
-  onStopPosting: () => void;
-}) => {
-  const [posts, setPosts] = useState<{ body: string; author: string }[]>([]);
+const PostList = () => {
+  const posts = useLoaderData<{ body: string; author: string }[]>();
 
   return (
     <>
-      {isPosting && (
-        <Modal onClose={onStopPosting}>
-          <NewPost
-            onCancel={onStopPosting}
-            onAddPost={(post) => setPosts((posts) => [post, ...posts])}
-          />
-        </Modal>
-      )}
-
       {/* If there are posts, render them */}
       {posts.length > 0 && (
         <ul className={styles.posts}>
