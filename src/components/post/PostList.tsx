@@ -3,15 +3,15 @@ import Post from "./Post";
 import styles from "./PostList.module.css";
 
 const PostList = () => {
-  const posts = useLoaderData<{ body: string; author: string }[]>();
+  const posts = useLoaderData<{ id: string; body: string; author: string }[]>();
 
   return (
     <>
       {/* If there are posts, render them */}
       {posts.length > 0 && (
         <ul className={styles.posts}>
-          {posts.map(({ author, body }) => (
-            <Post key={body} author={author} content={body} />
+          {posts.map(({ id, author, body }) => (
+            <Post key={id} id={id} author={author} content={body} />
           ))}
         </ul>
       )}

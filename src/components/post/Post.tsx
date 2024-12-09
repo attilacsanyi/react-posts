@@ -1,16 +1,20 @@
+import { Link } from "react-router-dom";
 import styles from "./Post.module.css";
 
 type Props = {
+  id: string;
   author: string;
   content: string;
 };
 
-const Post = ({ author, content }: Props) => {
+const Post = ({ id, author, content }: Props) => {
   return (
-    <div className={styles.post}>
-      <h3 className={styles.author}>{author}</h3>
-      <p className={styles.text}>{content}</p>
-    </div>
+    <li className={styles.post}>
+      <Link to={id}>
+        <h3 className={styles.author}>{author}</h3>
+        <p className={styles.text}>{content}</p>
+      </Link>
+    </li>
   );
 };
 

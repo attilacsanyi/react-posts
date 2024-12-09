@@ -17,7 +17,7 @@ export default Posts;
 export async function loader() {
   const response = await fetch("http://localhost:8080/posts");
   const resData = (await response.json()) as {
-    posts: { body: string; author: string }[];
+    posts: { id: string; body: string; author: string }[];
   };
   return resData.posts;
 }
